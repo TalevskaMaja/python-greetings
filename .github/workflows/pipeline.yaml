@@ -38,13 +38,13 @@ jobs:
           run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
   
         - name: Stop docker service greetings-app-dev
-          run: docker-compose -f docker-compose.dev.yml stop greetings-app-dev
+          run: docker-compose -f docker-compose.yml stop greetings-app-dev
   
         - name: Remove docker service greetings-app-dev
-          run: docker-compose -f docker-compose.dev.yml rm -f greetings-app-dev
+          run: docker-compose -f docker-compose.yml rm -f greetings-app-dev
   
         - name: Create (up) docker service greetings-app-dev
-          run: docker-compose -f docker-compose.dev.yml up -d greetings-app-dev
+          run: docker-compose -f docker-compose.yml up -d greetings-app-dev
 
 
 
