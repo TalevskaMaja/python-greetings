@@ -28,6 +28,7 @@ jobs:
       - name: Deploying Python microservice to DEV environment...
         run: |
           docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
+          ls -la
           docker-compose -f ./docker-compose.yml stop greetings-app-dev
           docker-compose -f ./docker-compose.yml rm -f greetings-app-dev
           docker-compose -f ./docker-compose.yml up -d greetings-app-dev
