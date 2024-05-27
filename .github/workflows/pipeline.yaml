@@ -24,7 +24,7 @@ jobs:
       - name: Build and push Docker image
         run: |
             docker build -t ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest .
-            docker login -u ${{ secrets.DOCKERHUB_NAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+            docker login -u ${{ secrets.DOCKERHUB_NAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker push ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
   
   deploy-to-dev:
@@ -37,14 +37,14 @@ jobs:
         - name: Pull latest Docker image from DockerHub
           run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
   
-        # - name: Stop docker service greetings-app-dev
-        #   run: docker-compose -f docker-compose.yml stop greetings-app-dev
+        - name: Stop docker service greetings-app-dev
+          run: docker-compose -f docker-compose.dev.yml stop greetings-app-dev
   
-        # - name: Remove docker service greetings-app-dev
-        #   run: docker-compose -f docker-compose.yml rm -f greetings-app-dev
+        - name: Remove docker service greetings-app-dev
+          run: docker-compose -f docker-compose.dev.yml rm -f greetings-app-dev
   
         - name: Create (up) docker service greetings-app-dev
-          run: docker-compose -f ./Users/majatalevska/dockerrr/new/python-greetings/docker-compose.yml up -d greetings-app-dev
+          run: docker-compose -f docker-compose.dev.yml up -d greetings-app-dev
 
 
 
