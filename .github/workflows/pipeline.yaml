@@ -9,7 +9,7 @@ jobs:
   build-docker-image:
     runs-on: docker
     services:
-      docker:
+      docker: 
         image: docker:dind
         options: --privileged
     steps:
