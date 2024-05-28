@@ -44,13 +44,13 @@ jobs:
           run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
   
         - name: Stop docker service greetings-app-dev
-          run: docker-compose -f ./docker-compose.yml stop greetings-app-dev
+          run: docker-compose -f stop greetings-app-dev
   
         - name: Remove docker service greetings-app-dev
-          run: docker-compose -f ./docker-compose.yml rm -f greetings-app-dev
+          run: docker-compose -f -f greetings-app-dev
   
         - name: Create (up) docker service greetings-app-dev
-          run: docker-compose -f ./docker-compose.yml up -d greetings-app-dev
+          run: docker-compose -f up -d greetings-app-dev
 
 
 
@@ -68,9 +68,9 @@ jobs:
       - name: Deploying Python microservice to STG environment...
         run: |
           docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
-          docker-compose -f ./docker-compose.yml stop greetings-app-stg
-          docker-compose -f ./docker-compose.yml rm -f greetings-app-stg
-          docker-compose -f ./docker-compose.yml up -d greetings-app-stg
+          docker-compose -f stop greetings-app-stg
+          docker-compose -f rm -f greetings-app-stg
+          docker-compose -f up -d greetings-app-stg
 
   tests-on-stg:
     runs-on: ubuntu-latest
@@ -86,9 +86,9 @@ jobs:
       - name: Deploying Python microservice to PROD environment...
         run: |
           docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
-          docker-compose -f ./docker-compose.yml stop greetings-app-prod
-          docker-compose -f ./docker-compose.yml rm -f greetings-app-prod
-          docker-compose -f ./docker-compose.yml up -d greetings-app-prod
+          docker-compose -f stop greetings-app-prod
+          docker-compose -f rm -f greetings-app-prod
+          docker-compose -f up -d greetings-app-prod
 
   tests-on-prod:
     runs-on: ubuntu-latest
