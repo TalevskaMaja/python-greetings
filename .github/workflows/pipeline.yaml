@@ -13,8 +13,8 @@ jobs:
         image: docker:dind
         options: --privileged
     steps:
-      - name: listing files
-        uses: ls
+      - name: List files for debugging
+        run: ls -l
 
       - name: Checkout repository
         uses: actions/checkout@v3
