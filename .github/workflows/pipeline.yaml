@@ -31,7 +31,7 @@ jobs:
             docker push ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
   
   deploy-to-dev:
-      runs-on: docker
+      runs-on: ubuntu-latest
       needs: build-docker-image
       steps:
         - name: Print information
@@ -52,7 +52,7 @@ jobs:
 
 
   tests-on-dev:
-    runs-on: docker
+    runs-on: ubuntu-latest
     needs: deploy-to-dev
     steps:
       - name: Running tests on DEV environment...
@@ -70,14 +70,14 @@ jobs:
           docker-compose -f ./docker-compose.yml up -d greetings-app-stg
 
   tests-on-stg:
-    runs-on: docker
+    runs-on: ubuntu-latest
     needs: deploy-to-stg
     steps:
       - name: Running tests on STG environment...
         run: docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings_stg
 
   deploy-to-prod:
-    runs-on: docker
+    runs-on: ubuntu-latest
     needs: tests-on-stg
     steps:
       - name: Deploying Python microservice to PROD environment...
@@ -88,7 +88,7 @@ jobs:
           docker-compose -f ./docker-compose.yml up -d greetings-app-prod
 
   tests-on-prod:
-    runs-on: docker
+    runs-on: ubuntu-latest
     needs: deploy-to-prod
     steps:
       - name: Running tests on PROD environment...
