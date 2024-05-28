@@ -13,6 +13,9 @@ jobs:
         image: docker:dind
         options: --privileged
     steps:
+      - name: listing files
+        uses: ls
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -29,7 +32,7 @@ jobs:
         run: |
             docker build -t ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest .
             docker push ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
-  
+
   deploy-to-dev:
       runs-on: ubuntu-latest
       needs: build-docker-image
