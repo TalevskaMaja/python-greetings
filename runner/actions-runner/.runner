@@ -1,9 +1,0 @@
-﻿{
-  "agentId": 21,
-  "agentName": "Majas-MacBook-Pro-2",
-  "poolId": 1,
-  "poolName": "Default",
-  "serverUrl": "https://pipelinesghubeus11.actions.githubusercontent.com/DopHaWBIVjITMKFlduutI8rKROKvS4knqbDTpYagpoffjUiOYL/",
-  "gitHubUrl": "https://github.com/TalevskaMaja/python-greetings",
-  "workFolder": "_work"
-}
