@@ -61,7 +61,10 @@ jobs:
     needs: deploy-to-dev
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3      
+        
+      - name: Pull latest Docker image from DockerHub
+        run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
 
       - name: Running tests on DEV environment...
         run: docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
