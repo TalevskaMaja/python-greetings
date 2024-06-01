@@ -56,6 +56,9 @@ jobs:
       - name: Create (up) docker service greetings-app-dev
         run: docker-compose -f docker-compose.yml up -d greetings-app-dev
 
+      - name: docker ps
+        run: docker ps -a
+
 
   tests-on-dev:
     runs-on: ubuntu-latest
@@ -66,9 +69,10 @@ jobs:
 
       - name: Testing on DEV environment
         run: |
+          docker ps -a
           echo "Running tests on DEV environment.."
           docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
-          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings_dev
+          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings_dev
 
   # tests-on-dev:
   #   runs-on: ubuntu-latest
