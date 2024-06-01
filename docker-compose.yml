@@ -4,21 +4,18 @@ services:
   greetings-app-dev:
     image: talevskam/python-greetings-app:latest
     container_name: greetings-app-dev
-    network_mode: host
     ports:
-      - "7001:3000"
+      - 7001:3000
 
   greetings-app-stg:
     image: talevskam/python-greetings-app:latest
     container_name: greetings-app-stg
-    network_mode: host
     ports:
-      - "7002:3000"
+      - 7002:3000
 
   greetings-app-prod:
     image: talevskam/python-greetings-app:latest
     container_name: greetings-app-prod
-    network_mode: host
     ports:
-      - "7003:3000"
+      - 7003:3000
 
