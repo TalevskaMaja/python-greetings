@@ -67,7 +67,7 @@ jobs:
         run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
 
       - name: Running tests on DEV environment...
-        run: docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
+        run: docker run --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
 
   deploy-to-stg:
     runs-on: ubuntu-latest
