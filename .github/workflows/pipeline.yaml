@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Running tests on DEV environment...
-        run: docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings_dev
+        run: docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
 
   deploy-to-stg:
     runs-on: ubuntu-latest
