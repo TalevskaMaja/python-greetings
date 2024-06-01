@@ -73,7 +73,7 @@ jobs:
           echo "Running tests on DEV environment.."
           docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
           ls
-          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
+          docker run --network='http://127.0.0.1:7001' --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
           
 
   # tests-on-dev:
