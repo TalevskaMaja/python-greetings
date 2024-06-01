@@ -15,7 +15,7 @@ jobs:
         options: --privileged
     steps:
       - name: List files for debugging
-        run: ls -l
+        run: ls
 
       - name: Checkout repository
         uses: actions/checkout@v3
