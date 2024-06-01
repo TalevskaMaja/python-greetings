@@ -72,7 +72,7 @@ jobs:
           docker ps -a
           echo "Running tests on DEV environment.."
           docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
-          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings_dev
+          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings-app-dev
 
   # tests-on-dev:
   #   runs-on: ubuntu-latest
