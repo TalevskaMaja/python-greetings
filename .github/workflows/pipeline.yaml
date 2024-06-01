@@ -31,8 +31,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest .
-          docker push ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
+            docker build -t ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest .
+            docker push ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
 
   deploy-to-dev:
     runs-on: ubuntu-latest
@@ -46,9 +46,6 @@ jobs:
   
       - name: Pull latest Docker image from DockerHub
         run: docker pull ${{ secrets.DOCKERHUB_NAME }}/python-greetings-app:latest
-
-      - name: Create custom network
-        run: docker network create docker-network
   
       - name: Stop docker service greetings-app-dev
         run: docker-compose -f docker-compose.yml stop greetings-app-dev
@@ -58,8 +55,8 @@ jobs:
   
       - name: Create (up) docker service greetings-app-dev
         run: | 
-	  docker-compose -f docker-compose.yml up -d greetings-app-dev
-	  docker network connect docker-network greetings-app-dev
+          docker-compose -f docker-compose.yml up -d greetings-app-dev
+          docker network connect docker-network greetings-app-dev
 
       - name: docker ps
         run: docker ps -a
@@ -77,8 +74,8 @@ jobs:
           docker ps -a
           echo "Running tests on DEV environment.."
           docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
-          docker run --network=docker-network --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings-app-dev
-
+          ls
+          docker run --network=docker-network --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
           
 
   # tests-on-dev:
