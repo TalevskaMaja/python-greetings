@@ -58,8 +58,8 @@ jobs:
   
       - name: Create (up) docker service greetings-app-dev
         run: | 
-	        docker-compose -f docker-compose.yml up -d greetings-app-dev
-	        docker network connect docker-network greetings-app-dev
+	         docker-compose -f docker-compose.yml up -d greetings-app-dev
+	         docker network connect docker-network greetings-app-dev
 
       - name: docker ps
         run: docker ps -a
