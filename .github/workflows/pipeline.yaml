@@ -60,20 +60,20 @@ jobs:
         run: docker ps -a
 
 
-  # tests-on-dev:
-  #   runs-on: ubuntu-latest
-  #   needs: deploy-to-dev
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3 
+  tests-on-dev:
+    runs-on: ubuntu-latest
+    needs: deploy-to-dev
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
 
-  #     - name: Testing on DEV environment
-  #       run: |
-  #         docker ps -a
-  #         echo "Running tests on DEV environment.."
-  #         docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
-  #         ls
-  #         docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
+      - name: Testing on DEV environment
+        run: |
+          docker ps -a
+          echo "Running tests on DEV environment.."
+          docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
+          ls
+          docker run --network=host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings-app-dev
           
 
   # tests-on-dev:
@@ -91,7 +91,7 @@ jobs:
 
   deploy-to-stg:
     runs-on: ubuntu-latest
-    # needs: tests-on-dev
+    needs: tests-on-dev
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
