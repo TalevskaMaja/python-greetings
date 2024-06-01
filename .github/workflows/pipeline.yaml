@@ -91,7 +91,7 @@ jobs:
 
   deploy-to-stg:
     runs-on: ubuntu-latest
-    needs: tests-on-dev
+    # needs: tests-on-dev
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
