@@ -67,6 +67,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3 
 
+      - name: Create (up) docker service greetings-app-dev  
+        run: RUNNER_TRACKING_ID="" && docker-compose -f docker-compose.yml up -d greetings-app-dev
+
       - name: Testing on DEV environment
         run: |
           docker ps -a
