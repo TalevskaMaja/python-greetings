@@ -54,7 +54,7 @@ jobs:
         run: docker-compose -f docker-compose.yml rm -f greetings-app-dev
   
       - name: Create (up) docker service greetings-app-dev
-        run: docker-compose -f docker-compose.yml up -d greetings-app-dev
+        run: RUNNER_TRACKING_ID="" && docker-compose -f docker-compose.yml up -d greetings-app-dev
 
       - name: docker ps
         run: docker ps -a
@@ -73,7 +73,7 @@ jobs:
           echo "Running tests on DEV environment.."
           docker pull ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest
           ls
-          docker run --network host --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings_dev
+          docker run --network="host" --rm ${{ secrets.DOCKERHUB_NAME }}/api-tests:latest run greetings greetings_dev
           
 
   # tests-on-dev:
